@@ -44,6 +44,7 @@ class AddProductFragment : BottomSheetDialogFragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
+        observeVMEvents()
     }
 
     override fun onDestroyView() {
