@@ -11,7 +11,9 @@ import br.com.douglasmotta.whitelabeltutorial.databinding.AddProductFragmentBind
 import br.com.douglasmotta.whitelabeltutorial.util.CurrencyTextWatcher
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddProductFragment : BottomSheetDialogFragment() {
 
     private var _binding: AddProductFragmentBinding? = null

@@ -6,8 +6,9 @@ import br.com.douglasmotta.whitelabeltutorial.domain.model.Product
 import br.com.douglasmotta.whitelabeltutorial.domain.usecase.CreateProductUseCase
 import br.com.douglasmotta.whitelabeltutorial.domain.usecase.UploadProductImageUseCase
 import java.util.*
+import javax.inject.Inject
 
-class CreateProductUseCaseImpl(
+class CreateProductUseCaseImpl @Inject constructor(
     private val uploadProductImageUseCase: UploadProductImageUseCase,
     private val productRepository: ProductRepository
 ) : CreateProductUseCase {
