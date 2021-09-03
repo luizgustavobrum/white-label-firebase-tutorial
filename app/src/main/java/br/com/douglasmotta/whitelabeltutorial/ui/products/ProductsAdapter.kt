@@ -10,7 +10,7 @@ import br.com.douglasmotta.whitelabeltutorial.domain.model.Product
 import br.com.douglasmotta.whitelabeltutorial.util.toCurrency
 import com.bumptech.glide.Glide
 
-class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductsViewHolder>(DIFF_CALLBACK) {
+class ProductsAdapter : ListAdapter<Product, ProductsAdapter.ProductsViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
