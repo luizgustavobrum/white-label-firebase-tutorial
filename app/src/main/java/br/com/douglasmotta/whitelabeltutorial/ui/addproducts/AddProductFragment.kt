@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import br.com.douglasmotta.whitelabeltutorial.databinding.AddProductFragmentBinding
 import br.com.douglasmotta.whitelabeltutorial.util.CurrencyTextWatcher
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.textfield.TextInputLayout
 
 class AddProductFragment : BottomSheetDialogFragment() {
 
@@ -57,6 +58,11 @@ class AddProductFragment : BottomSheetDialogFragment() {
             buttonAddProduct.setOnClickListener {
                 val description = inputDescription.text.toString()
                 val price = inputPrice.text.toString()
+                viewModel.createProduct(
+                    description,
+                    price,
+                    imageUri
+                )
             }
 
             inputPrice.run {
@@ -69,4 +75,22 @@ class AddProductFragment : BottomSheetDialogFragment() {
         getContent.launch("image/*")
     }
 
+    private fun TextInputLayout.setError(stringResId: Int?) {
+        this.error = if (stringResId != null) getString(stringResId) else null
+    }
+
+    private fun observeVMEvents() {
+        viewModel.imageUriErrorResId.observe(viewLifecycleOwner) { drawableResId ->
+            binding.imageProduct.setBackgroundResource(drawableResId)
+        }
+
+        viewModel.descriptionFieldErrorResId.observe(viewLifecycleOwner) { stringResId ->
+            binding.inputLayoutDescription.setError(stringResId)
+        }
+
+        viewModel.priceFieldErrorResId.observe(viewLifecycleOwner) { stringResId ->
+            binding.inputLayoutPrice.setError(stringResId)
+
+        }
+    }
 }
