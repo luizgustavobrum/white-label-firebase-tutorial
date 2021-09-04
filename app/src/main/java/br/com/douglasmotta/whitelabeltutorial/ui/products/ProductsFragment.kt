@@ -44,8 +44,7 @@ class ProductsFragment : Fragment() {
         setListeners()
         observeNavBackStack()
         observeSwipeRefreshLayout()
-
-        viewModel.getProducts()
+        getProducts()
     }
 
     override fun onDestroyView() {
@@ -96,6 +95,7 @@ class ProductsFragment : Fragment() {
 
     private fun observeVMEvents() {
         viewModel.productsData.observe(viewLifecycleOwner) { products ->
+            binding.swipeRefreshProducts.isRefreshing = false
             productsAdapter.submitList(products)
         }
 
@@ -107,9 +107,13 @@ class ProductsFragment : Fragment() {
     private fun observeSwipeRefreshLayout() {
         binding.swipeRefreshProducts.run {
             setOnRefreshListener {
-                isRefreshing = false
+                getProducts()
             }
         }
+    }
+
+    private fun getProducts() {
+        viewModel.getProducts()
     }
 
 }
